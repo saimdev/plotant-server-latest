@@ -1260,11 +1260,11 @@ def saveGraph(request):
             g = GraphData.objects.get(id=currentGraphId)
             data['user_id'] = g.user_id
             updateData(g.id, **data)
-            logsData(associate.role, f'{user['user']} has modified {g.graphName} plot', g.id, **data)
+            logsData(associate.role, f"{user['user']} has modified {g.graphName} plot", g.id, **data)
             return Response({'message': 'Graph data saved successfully'}, status=201)
         else:
             data['user_id'] = user['user_id']
-            Graph(associate.role, f'{user["user"]} has modified {data["graphName"]} plot', **data)
+            Graph(associate.role, f"{user['user']} has modified {data['graphName']} plot", **data)
             return Response({'message': 'Graph data saved successfully'}, status=201)
     else:
         return Response({"error": 'Wrong Request Method'}, status=400)
